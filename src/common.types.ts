@@ -30,7 +30,9 @@ export enum ENUM_FILTER_OPERATOR_TYPE {
     /**
      * Array based search with "$nin" mongo operator
      */
-    _nin = 'nin'
+    _nin = 'nin',
+    /** * Array based search with "$gt and $lt" mongo operator */
+    between = 'between'
 }
 
 export enum REGEX_SEARCH_MODE_TYPE {
