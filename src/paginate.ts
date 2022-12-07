@@ -56,7 +56,8 @@ export const paginate = async (
     }
     // aggregate_arr.push(skip)
     // aggregate_arr.push(limit)
+    const total_items = await model.find(paginatedQuery).count()
     const docs = await query_fn.exec()
     const next_key = generatePaginationNextKeyDtoArr(nextKeyFn(docs))
-    return { docs: docs, next_key: next_key }
+    return { docs: docs, next_key: next_key, total_items }
 }
