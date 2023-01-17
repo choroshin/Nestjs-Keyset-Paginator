@@ -48,8 +48,8 @@ export const paginate = async (
             select_obj[projectionEle.name] = projectionEle.mode
         }
         // console.log('projection: ', select_obj);
-        query_fn = model.find(paginatedQuery, select_obj).skip(skip).limit(limit)
-    } else query_fn = model.find(paginatedQuery).skip(skip).limit(limit)
+        query_fn = model.find(paginatedQuery, select_obj).skip(skip).limit(limit).lean()
+    } else query_fn = model.find(paginatedQuery).skip(skip).limit(limit).lean()
 
     if (sort) {
         query_fn = query_fn.sort([sort])
