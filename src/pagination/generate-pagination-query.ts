@@ -37,7 +37,7 @@ export const generatePaginationQuery = (query, sort?, nextKey?) => {
         return { paginatedQuery, nextKeyFn }
     }
 
-    const sortOperator = sort[1] === 1 ? '$gt' : '$lt'
+    const sortOperator = sort[1] == 1 ? '$gt' : '$lt'
 
     const paginationQuery = [
         { [sortField]: { [sortOperator]: nextKey[sortField] } },
