@@ -54,7 +54,14 @@ const paginate = (model, skip = 0, limit = 10, start_key, sort_field, sort_order
     else
         query_fn = model.find(paginatedQuery).skip(skip).limit(limit).lean();
     if (sort) {
-        query_fn = query_fn.sort([sort]);
+        const sortExp = [sort];
+        if (model_paths.includes('_id')) {
+            sortExp.push(['_id', sort_order]);
+        }
+        else if (model_paths.includes('id')) {
+            sortExp.push(['id', sort_order]);
+        }
+        query_fn = query_fn.sort(sortExp);
     }
     // aggregate_arr.push(skip)
     // aggregate_arr.push(limit)
